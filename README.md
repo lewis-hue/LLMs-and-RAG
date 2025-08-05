@@ -104,32 +104,43 @@ The frontend is built for a responsive and engaging user experience. The chat.js
   const API_URL = "http://127.0.0.1:5000/predict";
 
   // UI rendering and helpers (toggle, bubble creation, autoresize)
-
+  
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
     const text = input.value.trim();
     if (!text) return;
 
+    // Create user bubble
     bubble(text, "user");
     input.value = "";
+
+    // Create a typing bubble for the bot
     const wait = bubble('<span class="typing"><span></span><span></span><span></span></span>', "bot", true);
     
     try {
+      // Make API request
       const response = await fetch(API_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: text }),
       });
+
+      // Handle response
       const result = await response.json();
       const reply = result.answer || "I'm sorry, I didn't get a valid response.";
+      
+      // Remove typing indicator and display reply
       wait.remove();
       bubble(reply, "bot");
+      
     } catch (err) {
+      // Handle API error
       console.error("API Error:", err);
       wait.remove();
       bubble("I'm having trouble connecting to the server.", "bot");
     }
   });
+})();
 ```
 
 ### Tuning Dataset (used as knowledge base)
