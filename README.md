@@ -1,21 +1,4 @@
-I've improved the structure, arrangement, and neatness of the RMD file to make it more professional and ATS-friendly. The new version uses cleaner formatting, more prominent headings, and a clearer flow to ensure a recruiter or an automated system can quickly parse the key information.
-
-Here is the revised RMD file content:
-
-```rmd
----
-title: "Qubiten Compliance Chatbot: LLM-Powered RAG System"
-author: "Your Name"
-date: "`r Sys.Date()`"
-output:
-  html_document:
-    toc: true
-    toc_depth: 3
-    theme: flatly
-    self_contained: true
-    includes:
-      in_header: null
----
+# Qubiten Compliance Chatbot: An LLM-Powered RAG System
 
 <p align="center">
   <img src="https://img.shields.io/badge/Tech%20Stack-LLM%20%7C%20RAG%20%7C%20Vertex%20AI-4285F4?style=for-the-badge&logo=google&logoColor=white" alt="Tech Stack Badge" />
@@ -54,7 +37,7 @@ An intelligent, Retrieval-Augmented Generation (RAG) assistant for Qubiten, a si
 
 ### **1. RAG Workflow**
 
-\`\`\`mermaid
+```mermaid
 flowchart TD
     A[👤 User Query] -->|1. POST /predict| B(🌐 Flask Backend)
     B -->|2. Embed Query| C{🔍 Vector Store}
@@ -62,12 +45,11 @@ flowchart TD
     B -->|4. Construct Prompt| D[🤖 Vertex AI LLM<br/>(text-bison@001)]
     D -->|5. Generate Answer| B
     B -->|6. Return JSON| A
-\`\`\`
+2. Backend Code (app.py)
+A clean, well-documented Flask application that handles API requests, orchestrates the RAG pipeline, and serves the frontend. The chat endpoint is the core of the system.
 
-### **2. Backend Code (`app.py`)**
-A clean, well-documented Flask application that handles API requests, orchestrates the RAG pipeline, and serves the frontend. The `chat` endpoint is the core of the system.
+Python
 
-\`\`\`python
 # app.py
 from flask import Flask, render_template, request, jsonify
 from langchain_ollama.llms import OllamaLLM
@@ -103,18 +85,17 @@ def chat():
     except Exception as e:
         logging.getLogger(__name__).error(f"Chat error: {e}")
         return jsonify({'error': 'An internal error occurred.'}), 500
-\`\`\`
+3. Frontend Code (chat.js)
+The frontend is built for a responsive and engaging user experience. The chat.js file manages all chat-specific logic, cleanly separating it from the rest of the site's functionality.
 
-### **3. Frontend Code (`chat.js`)**
-The frontend is built for a responsive and engaging user experience. The `chat.js` file manages all chat-specific logic, cleanly separating it from the rest of the site's functionality.
+JavaScript
 
-\`\`\`javascript
 // /static/js/chat.js
 (() => {
   const form = document.getElementById("chat-form");
   const input = document.getElementById("user-input");
   const pane = document.getElementById("chat-window");
-  const API_URL = "http://127.0.0.1:5000/api/chat";
+  const API_URL = "[http://127.0.0.1:5000/api/chat](http://127.0.0.1:5000/api/chat)";
 
   // UI rendering and helpers (toggle, bubble creation, autoresize)
 
@@ -146,11 +127,5 @@ The frontend is built for a responsive and engaging user experience. The `chat.j
 
   // Initialization and event listeners
 })();
-\`\`\`
-
----
-
-## **Project Outcome**
-
+Project Outcome
 This project successfully demonstrates the end-to-end development of a powerful, domain-specific chatbot. The modular design facilitates future scaling and integration into other platforms, while the RAG architecture ensures responses are both accurate and relevant to the provided context, minimizing hallucination. This solution provides a strong foundation for building enterprise-grade LLM applications.
-```
