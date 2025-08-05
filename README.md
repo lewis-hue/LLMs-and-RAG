@@ -46,8 +46,10 @@ An intelligent, Retrieval-Augmented Generation (RAG) assistant for Qubiten, a si
     D -->|5. Generate Answer| B
     B -->|6. Return JSON| A
 
-  **  2. Backend Code (app.py)**
+  ###**  2. Backend Code (app.py)**
+
 A clean, well-documented Flask application that handles API requests, orchestrates the RAG pipeline, and serves the frontend. The chat endpoint is the core of the system.
+
 # app.py
 from flask import Flask, render_template, request, jsonify
 from langchain_ollama.llms import OllamaLLM
@@ -84,7 +86,8 @@ def chat():
         logging.getLogger(__name__).error(f"Chat error: {e}")
         return jsonify({'error': 'An internal error occurred.'}), 500
 
-**3. Frontend Code (chat.js)**
+###**3. Frontend Code (chat.js)**
+
 The frontend is built for a responsive and engaging user experience. The chat.js file manages all chat-specific logic, cleanly separating it from the rest of the site's functionality.
 
 // /static/js/chat.js
