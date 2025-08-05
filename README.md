@@ -93,7 +93,7 @@ def chat():
 
 ### 3. Frontend Code (chat.js)
 
-The frontend is built for a responsive and engaging user experience. The chat.js file manages all chat-specific logic, cleanly separating it from the rest of the site's functionality.
+The frontend is built for a responsive and engaging user experience. The chat.js file manages all chat-specific logic, cleanly separating it from the rest of the site's functionality. Below is a snippet of the code.
 
 ```{javascript}
 // /static/js/chat.js
@@ -130,9 +130,6 @@ The frontend is built for a responsive and engaging user experience. The chat.js
       bubble("I'm having trouble connecting to the server.", "bot");
     }
   });
-
-  // Initialization and event listeners
-})();
 ```
 
 ### Tuning Dataset (used as knowledge base)
