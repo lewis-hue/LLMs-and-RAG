@@ -1,10 +1,23 @@
+---
+title: "🎯 Qubiten Compliance Chatbot"
+author: "Your Name"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+    theme: flatly
+    df_print: paged
+    self_contained: true
+    includes:
+      in_header: null
+---
+
 <p align="center">
   <img src="https://img.shields.io/badge/LLM–RAG–Google%20Vertex%20AI-blue" alt="Tech Stack Badge" />
   <img src="https://img.shields.io/badge/Flask–Python-green" alt="Backend Badge" />
-  <img src="https://img.shields.io/badge/HTML–CSS–JS-yellow" alt="Frontend Badge" />
+  <img src="https://img.shields.com/badge/HTML–CSS–JS-yellow" alt="Frontend Badge" />
 </p>
-
-# <code>🎯 Qubiten Compliance Chatbot</code>
 
 > **An intelligent, Retrieval-Augmented LLM assistant** powering compliance guidance for ISO 27001, SOC 2, HIPAA & GDPR.
 
@@ -28,25 +41,25 @@
 ## 🔍 Project Summary
 
 - **Company Simulation:** Qubiten – Compliance services provider  
-- **Technologies:**  
+- **Technologies:**
   - **LLM & RAG:** Google Vertex AI LLM (`text-bison@001`)  
   - **Backend:** Python, Flask, Vertex AI REST API  
   - **Frontend:** HTML, CSS, JavaScript  
   - **Deployment:** Local & third-party site integration  
-- **Key Features:**  
+- **Key Features:**
   1. Tuned knowledge-base dataset on Vertex AI  
   2. Document embeddings & similarity search  
-  3. Interactive chat widget overlay  
+  3. Interactive chat-widget overlay  
   4. End-to-end flow: user → retrieval → LLM → response  
 
-**Skills & Keywords:**  
-LLM · RAG · Google Vertex AI · Embeddings · Flask · Python · JavaScript · HTML · CSS · REST API · Chatbot · Architecture · Documentation
+**Skills & Keywords:** LLM · RAG · Google Vertex AI · Embeddings · Flask · Python · JavaScript · HTML · CSS · REST API · Chatbot · Architecture · Documentation
 
 
+---
 
 ## 🏗️ Architecture Diagram
 
-
+\`\`\`{mermaid, echo=FALSE}
 flowchart TD
   A[👤 User] -->|sends query| B[🌐 Web UI]
   B -->|POST /predict| C[🐍 Flask Backend]
@@ -57,51 +70,42 @@ flowchart TD
   E -->|generates answer| C
   C -->|return JSON| B
   B -->|render| A
-
+\`\`\`
 Figure 1: High-level flow from user request to response.
 
-🤖 **LLM & RAG Components**
+---
 
-▶️ LLM Model
-Model: text-bison@001 (Google Vertex AI)
-Model: text-bison@001 (Google Vertex AI)
-Why text-bison@001?
+## 🤖 LLM & RAG Components
 
-High throughput & cost-efficient
+### ▶️ LLM Model
+Model: `text-bison@001` (Google Vertex AI)  
+**Why `text-bison@001`?**
+* High throughput & cost-efficient
+* Excellent instruction-following
 
-Excellent instruction-following
-
-📚 Retrieval-Augmented Generation
-**1. Document Ingestion**
-
-Compliance guides, whitepapers, policy docs
-
-**2. Embedding Generation**
-**
-Vertex AI Embeddings API → 768-dim vectors**
-
-**3. Vector Store**
-
-Local FAISS / Pinecone index
-
-**4. Query & Retrieval
-**
-Embed user query → retrieve top 5 nearest docs
-
-**5. Prompt Assembly**
-
+### 📚 Retrieval-Augmented Generation
+**Document Ingestion** Compliance guides, whitepapers, policy documents  
+**Embedding Generation**
+* Vertex AI Embeddings API → 768-dim vectors
+**Vector Store**
+* Local FAISS / Pinecone index
+**Query & Retrieval**
+* Embed user query → retrieve top 5 nearest docs
+**Prompt Assembly**
+\`\`\`
 [SYSTEM]
 You are Qubiten’s compliance assistant...
 [CONTEXT]
 <doc1>…<doc5>
 [USER]
 {user question}
+\`\`\`
+**LLM Call & Post-processing** Send prompt → receive `data.answer` → format response
 
-**6. LLM Call & Post-processing**
+---
 
-Send prompt → receive data.answer → format response
-
-🧰 Data Preparation & Vertex AI Tuning
+## 🧰 Data Preparation & Vertex AI Tuning
+\`\`\`bash
 # 1. Upload base model
 gcloud ai models upload \
   --region=us-central1 \
@@ -114,14 +118,15 @@ gcloud ai tuning-jobs create \
   --training-dataset=projects/.../datasets/qa_pairs \
   --parameter-split=0.8 \
   --machine-type=n1-standard-4
+\`\`\`
+**Corpus:** ISO 27001, SOC 2, HIPAA, GDPR specs  
+**Steps:** Cleaning → Tokenization → Q&A annotation → GCS upload → fine-tune  
+**Outcome:** Domain-specific accuracy boost
 
-Corpus: ISO 27001, SOC 2, HIPAA, GDPR specs
+---
 
-Steps: Cleaning → Tokenization → Q&A annotation → GCS upload → fine-tune
-
-Outcome: Domain-specific accuracy boost
-
-🔧 Backend Implementation
+## 🔧 Backend Implementation
+\`\`\`python
 from flask import Flask, request, jsonify
 from vertexai import MatchingEngine, TextGenerationModel
 
@@ -137,63 +142,55 @@ def predict():
     prompt   = assemble_prompt(docs, user_msg)
     resp     = llm.predict(prompt)
     return jsonify(answer=resp.text)
+\`\`\`
+**Endpoint:** `POST /predict`  
+**Workflow:**
+1. Embed user query
+2. Retrieve top-k documents
+3. Build prompt
+4. Call LLM
+5. Return JSON response
 
+---
 
-Endpoint: POST /predict
-
-Workflow:
-
-Embed query
-
-Retrieve docs
-
-Build prompt
-
-Call LLM
-
-<!-- index.html -->
+## 💻 Frontend Implementation
+\`\`\`html
 <script src="nav-dynamic.js"></script>
+\`\`\`
+\`\`\`javascript
+// nav-dynamic.js (chat snippet)
+const response = await fetch("http://127.0.0.1:5000/predict", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ message: text })
+});
+const data = await response.json();
+bubble(data.answer, "bot");
+\`\`\`
+**Files:**
+- `index.html` – main shell & chat widget  
+- `nav-dynamic.js` – overlay panels & chat integration  
+- `styles.css` – custom utility styles  
+**UX Highlights:** Smooth toggle, typing indicator, auto-scroll
 
-Files:
+---
 
-index.html – main shell + chat widget
+## ✅ Integration & Testing
+**Local Development:**
+- Flask server on `localhost:5000`
+- Response latency < 500 ms
+**Third-Party Site:**
+- Embedded via `<script>` tag
+- CORS properly configured
+**Results:**
+- 100% demo uptime
+- High relevance & accuracy
 
-scripts.js – overlays, chat integration
+---
 
-styles.css – bespoke utility styles
-
-UX: Smooth toggle, typing indicator, auto-scroll
-
-✅ Integration & Testing
-Local Dev:
-
-Flask on localhost:5000
-
-Latency < 500 ms
-
-3rd-Party Site:
-
-Embedded via <script>
-
-CORS configured
-
-Results:
-
-100% demo uptime
-
-Excellent response relevance
-🏁 Conclusion
-Qubiten Compliance Chatbot showcases:
-
-Mastery of RAG and LLM fine-tuning
-
-Clean, modular Flask + JS architecture
-
-Seamless local & third-party integration
-
-Production-ready, extensible to any regulated domain
-
-Return JSON
-
-💻 Frontend Implementation
-
+## 🏁 Conclusion
+Qubiten Compliance Chatbot delivers:
+- Expert-level RAG grounding of compliance content
+- Fine-tuned LLM on Vertex AI for domain precision
+- Modular, maintainable Flask + JavaScript architecture
+- Effortless integration locally & on third-party platforms
