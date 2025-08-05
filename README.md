@@ -97,7 +97,7 @@ The frontend is built for a responsive and engaging user experience. The chat.js
   const form = document.getElementById("chat-form");
   const input = document.getElementById("user-input");
   const pane = document.getElementById("chat-window");
-  const API_URL = "[http://127.0.0.1:5000/api/chat](http://127.0.0.1:5000/api/chat)";
+  const API_URL = "[http://127.0.0.1:5000/api/chat](http://127.0.0.1:5000)";
 
   // UI rendering and helpers (toggle, bubble creation, autoresize)
 
