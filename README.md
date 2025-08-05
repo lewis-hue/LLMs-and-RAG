@@ -42,11 +42,11 @@
 **Skills & Keywords:**  
 LLM · RAG · Google Vertex AI · Embeddings · Flask · Python · JavaScript · HTML · CSS · REST API · Chatbot · Architecture · Documentation
 
----
+
 
 ## 🏗️ Architecture Diagram
 
-```mermaid
+
 flowchart TD
   A[👤 User] -->|sends query| B[🌐 Web UI]
   B -->|POST /predict| C[🐍 Flask Backend]
@@ -57,6 +57,7 @@ flowchart TD
   E -->|generates answer| C
   C -->|return JSON| B
   B -->|render| A
+
 Figure 1: High-level flow from user request to response.
 🤖 LLM & RAG Components
 ▶️ LLM Model
