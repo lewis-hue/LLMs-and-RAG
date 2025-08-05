@@ -52,11 +52,12 @@ An intelligent RAG-powered assistant for Qubiten that delivers expert guidance o
 
 A clean, well-documented Flask application that handles API requests, orchestrates the RAG pipeline, and serves the frontend. The chat endpoint is the core of the system.
 
+```{python}
 # app.py
 from flask import Flask, render_template, request, jsonify
 from langchain_ollama.llms import OllamaLLM
 from langchain_core.prompts import ChatPromptTemplate
-from vector import retriever # Placeholder for vector store logic
+from vector import retriever  # Placeholder for vector store logic
 import logging
 
 app = Flask(__name__)
@@ -65,10 +66,10 @@ logging.basicConfig(level=logging.INFO)
 try:
     model = OllamaLLM(model="deepseek-r1:1.5b")
     template = """
-You are a helpful and professional Qubiten sales and support assistant...
-Context from relevant services: {services}
-User's Question: {question}
-"""
+    You are a helpful and professional Qubiten sales and support assistant...
+    Context from relevant services: {services}
+    User's Question: {question}
+    """
     prompt = ChatPromptTemplate.from_template(template)
     chain = prompt | model
     logging.getLogger(__name__).info("LangChain model initialized.")
@@ -78,7 +79,8 @@ except Exception as e:
 
 @app.route('/api/chat', methods=['POST'])
 def chat():
-    if not chain: return jsonify({'error': 'AI model unavailable.'}), 503
+    if not chain:
+        return jsonify({'error': 'AI model unavailable.'}), 503
     try:
         user_message = request.get_json().get('message')
         services_context = retriever.invoke(user_message)
@@ -88,16 +90,18 @@ def chat():
         logging.getLogger(__name__).error(f"Chat error: {e}")
         return jsonify({'error': 'An internal error occurred.'}), 500
 
+
 ### 3. Frontend Code (chat.js)
 
 The frontend is built for a responsive and engaging user experience. The chat.js file manages all chat-specific logic, cleanly separating it from the rest of the site's functionality.
 
+```{javascript}
 // /static/js/chat.js
 (() => {
   const form = document.getElementById("chat-form");
   const input = document.getElementById("user-input");
   const pane = document.getElementById("chat-window");
-  const API_URL = "[http://127.0.0.1:5000/api/chat](http://127.0.0.1:5000)";
+  const API_URL = "http://127.0.0.1:5000/api/chat";
 
   // UI rendering and helpers (toggle, bubble creation, autoresize)
 
@@ -129,6 +133,8 @@ The frontend is built for a responsive and engaging user experience. The chat.js
 
   // Initialization and event listeners
 })();
+
+
 ### Tuning Dataset (used as knowledge base)
 
 ![Tuning dataset for knowledge base](https://github.com/lewis-hue/LLMs-and-RAG/blob/main/Tuned%20Model%20Success.png)
