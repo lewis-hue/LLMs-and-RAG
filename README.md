@@ -1,4 +1,3 @@
-```markdown
 <p align="center">
   <img src="https://img.shields.io/badge/LLM–RAG–Google%20Vertex%20AI-blue" alt="Tech Stack Badge" />
   <img src="https://img.shields.io/badge/Flask–Python-green" alt="Backend Badge" />
@@ -41,11 +40,7 @@
   4. End-to-end flow: user → retrieval → LLM → response  
 
 **Skills & Keywords:**  
-```
-
 LLM · RAG · Google Vertex AI · Embeddings · Flask · Python · JavaScript · HTML · CSS · REST API · Chatbot · Architecture · Documentation
-
-````
 
 ---
 
@@ -62,67 +57,57 @@ flowchart TD
   E -->|generates answer| C
   C -->|return JSON| B
   B -->|render| A
-````
-
-*Figure 1: High-level flow from user request to response.*
-
----
-
-## 🤖 LLM & RAG Components
-
-### ▶️ LLM Model
-
-```text
+Figure 1: High-level flow from user request to response.
+🤖 LLM & RAG Components
+▶️ LLM Model
+text
+Copy
+Edit
 Model: text-bison@001 (Google Vertex AI)
-```
+Why text-bison@001?
 
-**Why `text-bison@001`?**
+High throughput & cost-efficient
 
-* High throughput & cost-efficient
-* Excellent instruction-following
+Excellent instruction-following
 
----
+📚 Retrieval-Augmented Generation
+Document Ingestion
 
-### 📚 Retrieval-Augmented Generation
+Compliance guides, whitepapers, policy docs
 
-1. **Document Ingestion**
+Embedding Generation
 
-   * Compliance guides, whitepapers, policy docs
+text
+Copy
+Edit
+Vertex AI Embeddings API → 768-dim vectors
+Vector Store
 
-2. **Embedding Generation**
+Local FAISS / Pinecone index
 
-   ```text
-   Vertex AI Embeddings API → 768-dim vectors
-   ```
+Query & Retrieval
 
-3. **Vector Store**
+Embed user query → retrieve top 5 nearest docs
 
-   * Local FAISS / Pinecone index
+Prompt Assembly
 
-4. **Query & Retrieval**
+text
+Copy
+Edit
+[SYSTEM]
+You are Qubiten’s compliance assistant...
+[CONTEXT]
+<doc1>…<doc5>
+[USER]
+{user question}
+LLM Call & Post-processing
 
-   * Embed user query → retrieve top 5 nearest docs
+Send prompt → receive data.answer → format response
 
-5. **Prompt Assembly**
-
-   ```text
-   [SYSTEM]
-   You are Qubiten’s compliance assistant...
-   [CONTEXT]
-   <doc1>…<doc5>
-   [USER]
-   {user question}
-   ```
-
-6. **LLM Call & Post-processing**
-
-   * Send prompt → receive `data.answer` → format response
-
----
-
-## 🧰 Data Preparation & Vertex AI Tuning
-
-```bash
+🧰 Data Preparation & Vertex AI Tuning
+bash
+Copy
+Edit
 # 1. Upload base model
 gcloud ai models upload \
   --region=us-central1 \
@@ -135,17 +120,16 @@ gcloud ai tuning-jobs create \
   --training-dataset=projects/.../datasets/qa_pairs \
   --parameter-split=0.8 \
   --machine-type=n1-standard-4
-```
+Corpus: ISO 27001, SOC 2, HIPAA, GDPR specs
 
-* **Corpus:** ISO 27001, SOC 2, HIPAA, GDPR specs
-* **Steps:** Cleaning → Tokenization → Q\&A annotation → GCS upload → fine-tune
-* **Outcome:** Domain-specific accuracy boost
+Steps: Cleaning → Tokenization → Q&A annotation → GCS upload → fine-tune
 
----
+Outcome: Domain-specific accuracy boost
 
-## 🔧 Backend Implementation
-
-```python
+🔧 Backend Implementation
+python
+Copy
+Edit
 from flask import Flask, request, jsonify
 from vertexai import MatchingEngine, TextGenerationModel
 
@@ -161,27 +145,29 @@ def predict():
     prompt   = assemble_prompt(docs, user_msg)
     resp     = llm.predict(prompt)
     return jsonify(answer=resp.text)
-```
+Endpoint: POST /predict
 
-* **Endpoint:** `POST /predict`
-* **Workflow:**
+Workflow:
 
-  1. Embed query
-  2. Retrieve docs
-  3. Build prompt
-  4. Call LLM
-  5. Return JSON
+Embed query
 
----
+Retrieve docs
 
-## 💻 Frontend Implementation
+Build prompt
 
-```html
+Call LLM
+
+Return JSON
+
+💻 Frontend Implementation
+html
+Copy
+Edit
 <!-- index.html -->
 <script src="nav-dynamic.js"></script>
-```
-
-```js
+js
+Copy
+Edit
 // nav-dynamic.js (chat snippet)
 const response = await fetch("http://127.0.0.1:5000/predict", {
   method: "POST",
@@ -190,46 +176,42 @@ const response = await fetch("http://127.0.0.1:5000/predict", {
 });
 const data = await response.json();
 bubble(data.answer, "bot");
-```
+Files:
 
-* **Files:**
+index.html – main shell + chat widget
 
-  * `index.html` – main shell + chat widget
-  * `nav-dynamic.js` – overlays, chat integration
-  * `styles.css` – bespoke utility styles
-* **UX:** Smooth toggle, typing indicator, auto-scroll
+nav-dynamic.js – overlays, chat integration
 
----
+styles.css – bespoke utility styles
 
-## ✅ Integration & Testing
+UX: Smooth toggle, typing indicator, auto-scroll
 
-* **Local Dev:**
+✅ Integration & Testing
+Local Dev:
 
-  * Flask on `localhost:5000`
-  * Latency < 500 ms
-* **3rd-Party Site:**
+Flask on localhost:5000
 
-  * Embedded via `<script>`
-  * CORS configured
-* **Results:**
+Latency < 500 ms
 
-  * 100% demo uptime
-  * Excellent response relevance
+3rd-Party Site:
 
----
+Embedded via <script>
 
-## 🏁 Conclusion
+CORS configured
 
-**Qubiten Compliance Chatbot** showcases:
+Results:
 
-* Mastery of **RAG** and **LLM** fine-tuning
-* Clean, modular **Flask** + **JS** architecture
-* Seamless local & third-party integration
-* Production-ready, extensible to any regulated domain
+100% demo uptime
 
----
+Excellent response relevance
 
-<p align="center">
-  _© 2025 Qubiten Compliance Chatbot • Built with passion & cutting-edge AI_
-</p>
-```
+🏁 Conclusion
+Qubiten Compliance Chatbot showcases:
+
+Mastery of RAG and LLM fine-tuning
+
+Clean, modular Flask + JS architecture
+
+Seamless local & third-party integration
+
+Production-ready, extensible to any regulated domain
