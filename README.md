@@ -8,7 +8,8 @@
 
 ## **Project Overview**
 
-An intelligent, Retrieval-Augmented Generation (RAG) assistant for Qubiten, a simulated compliance services provider. This chatbot provides expert-level guidance on complex regulations like ISO 27001, SOC 2, HIPAA, and GDPR by leveraging a fine-tuned Large Language Model (LLM) and a proprietary knowledge base.
+An intelligent RAG-powered assistant for Qubiten that delivers expert guidance on compliance services using a fine-tuned LLM and a custom knowledge base.
+
 
 ### **Key Features**
 
@@ -17,6 +18,9 @@ An intelligent, Retrieval-Augmented Generation (RAG) assistant for Qubiten, a si
 * **Scalable Architecture:** Designed with a modular Python/Flask backend and a clean, responsive JavaScript frontend for easy deployment and maintenance.
 * **Interactive UI:** Features a dynamic chat widget with smooth animations, typing indicators, and a clean user experience.
 
+### A Live Video Demonstration of the Chatbot
+
+![Demonstration Video(https://github.com/lewis-hue/LLMs-and-RAG/blob/main/Video%20(Success).mp4)
 ---
 
 ## **Technical Stack**
@@ -127,6 +131,19 @@ The frontend is built for a responsive and engaging user experience. The chat.js
 
   // Initialization and event listeners
 })();
+### Tuning Dataset (used as knowledge base)
+
+![Tuning dataset for knowledge base](https://github.com/lewis-hue/LLMs-and-RAG/blob/main/Tuned%20Model%20Success.png)
+
+### Local AI Agent
+![Local AI Agent Response 1](https://github.com/lewis-hue/LLMs-and-RAG/blob/main/Local%20Agent%20success%201.png)
+
+![Local AI Agent Response 2](https://github.com/lewis-hue/LLMs-and-RAG/blob/main/Local%20Agent%20success%202.png)
+
+### Local AI Agent integrated into a third-party website
+
+![Integrated AI Agent](https://github.com/lewis-hue/LLMs-and-RAG/blob/main/Website%20AI%20Agent%20Success.png)
+
 
 ### Project Outcome
 
