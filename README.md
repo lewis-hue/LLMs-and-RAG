@@ -89,7 +89,7 @@ def chat():
     except Exception as e:
         logging.getLogger(__name__).error(f"Chat error: {e}")
         return jsonify({'error': 'An internal error occurred.'}), 500
-
+```
 
 ### 3. Frontend Code (chat.js)
 
@@ -133,7 +133,7 @@ The frontend is built for a responsive and engaging user experience. The chat.js
 
   // Initialization and event listeners
 })();
-
+```
 
 ### Tuning Dataset (used as knowledge base)
 
