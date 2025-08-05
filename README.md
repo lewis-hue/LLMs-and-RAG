@@ -18,9 +18,7 @@ An intelligent RAG-powered assistant for Qubiten that delivers expert guidance o
 * **Scalable Architecture:** Designed with a modular Python/Flask backend and a clean, responsive JavaScript frontend for easy deployment and maintenance.
 * **Interactive UI:** Features a dynamic chat widget with smooth animations, typing indicators, and a clean user experience.
 
-### A Live Video Demonstration of the Chatbot
 
-![Demonstration Video(https://github.com/lewis-hue/LLMs-and-RAG/blob/main/Video%20(Success).mp4)
 ---
 
 ## **Technical Stack**
@@ -135,14 +133,25 @@ The frontend is built for a responsive and engaging user experience. The chat.js
 
 ![Tuning dataset for knowledge base](https://github.com/lewis-hue/LLMs-and-RAG/blob/main/Tuned%20Model%20Success.png)
 
+
+
+
 ### Local AI Agent
+
+
 ![Local AI Agent Response 1](https://github.com/lewis-hue/LLMs-and-RAG/blob/main/Local%20Agent%20success%201.png)
 
+
+
+
 ![Local AI Agent Response 2](https://github.com/lewis-hue/LLMs-and-RAG/blob/main/Local%20Agent%20success%202.png)
+
+
 
 ### Local AI Agent integrated into a third-party website
 
 ![Integrated AI Agent](https://github.com/lewis-hue/LLMs-and-RAG/blob/main/Website%20AI%20Agent%20Success.png)
+
 
 
 ### Project Outcome
