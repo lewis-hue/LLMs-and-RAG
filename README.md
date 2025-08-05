@@ -139,13 +139,13 @@ The frontend is built for a responsive and engaging user experience. The chat.js
 
 
 
-### Local AI Agent
+### Local AI Agent Test I
 
 
 ![Local AI Agent Response 1](https://github.com/lewis-hue/LLMs-and-RAG/blob/main/Local%20Agent%20success%201.png)
 
 
-
+### Local AI Agent Test II
 
 ![Local AI Agent Response 2](https://github.com/lewis-hue/LLMs-and-RAG/blob/main/Local%20Agent%20success%202.png)
 
